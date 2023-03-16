@@ -1,0 +1,48 @@
+<!-- Gabriel Wersebe -->
+<!-- Assignment 1 -->
+<!-- Note: I had to compile the typescript into javascript to load it into the html file, this was the only way i was able to get it working without resorting to a web server -->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Grocery List</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  </head>
+  <body>
+    <div class="container">
+      <h1>Grocery List</h1>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Quantity</th>
+            <th>Price</th>
+          </tr>
+        </thead>
+        <tbody id="grocery-list">
+        </tbody>
+      </table>
+    </div>
+    <script src="grocery.js"></script>
+    <script>
+      const groceryList = document.querySelector('#grocery-list');
+      const groceries = Grocery.createGroceries();
+
+      for (const item of groceries) {
+        const row = document.createElement('tr');
+        const name = document.createElement('td');
+        const quantity = document.createElement('td');
+        const price = document.createElement('td');
+
+        name.textContent = item.name;
+        quantity.textContent = item.quantity.toString();
+        price.textContent = `$${item.price.toFixed(2)}`;
+
+        row.appendChild(name);
+        row.appendChild(quantity);
+        row.appendChild(price);
+        groceryList.appendChild(row);
+      }
+    </script>
+  </body>
+</html>
